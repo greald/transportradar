@@ -16,5 +16,7 @@
   <author href="https://ghvernuft.nl" email="greaties@ghvernuft.nl">
       Greald
   </author>
+  
+  <access origin="*"></access>
 
 </widget>
