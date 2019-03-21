@@ -18,5 +18,7 @@
   </author>
   
   <access origin="*"></access>
+  <allow-intent href="*" />
+  <allow-navigation href="*" />
 
 </widget>
