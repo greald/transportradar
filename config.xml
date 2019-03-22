@@ -156,6 +156,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     
-    <allow-navigation href="*" />
+    <allow-navigation href="https://citytransportservice.nl/*" />
 
 </widget>
