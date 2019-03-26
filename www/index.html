@@ -42,22 +42,33 @@
 </head>
 
 <body>
-    <div class="app">
-        <h1>Bezorgradar</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Device Aansluiten</p>
-            <p class="event received">Device is Klaar</p>
-            <p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg">onderweg</a></p>
-            <p><a href="spec.html">spec</a></p>
-            <p><a href="p2.html">linktest</a></p>
-            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p>
-        </div>
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+<div class="container">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">InAppBrowser</h3>
+		</div>
+		<p>Deze plug-in opent andere webpagina's binnen de context van de huidige app.
+			Zodra de pagina gesloten wordt, keert u terug in de app.</p>
+
+		<p> Dit voorkomt dat een aparte
+			browser-sessie wordt gestart (via Chrome of Safari) en de gebruiker onbedoeld de
+			app verlaat. Probeer het maar:</p>
+
+		<div id="list" class="btn-group btn-group-lg btn-group-justified" role="group">
+			<a href="#" class="btn btn-warning" data-id="android">Android </a>
+			<a href="#" class="btn btn-warning" data-id="apple">Apple </a>
+			<a href="#" class="btn btn-warning" data-id="winphone">WinPhone </a>
+			<a href="#" class="btn btn-warning" data-id="phonegap">PhoneGap</a>
+		</div>
+	</div>
+	<hr/>
+	<a href="index.html" class="btn btn-block btn-lg btn-success">Start</a>
+</div>
+<!-- Scripts -->
+<script src="cordova.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/pg.inappbrowser.js"></script>
 </body>
+
 
 </html>
