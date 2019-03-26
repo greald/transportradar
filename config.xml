@@ -3,21 +3,21 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "nl.citytransport.bezorgradar"
+        id        = "nl.citytransportservice.bezorgradar"
         version   = "1.0.0">
 
     <name>Bezorgradar</name>
 
     <description>
-        Bezorgradar sample application that responds to the deviceready event.
+      Coming for you. Sample application that responds to the deviceready event.
     </description>
 
     <author href="https://ghvernuft.nl" email="greaties@ghvernuft.nl">
-        Greaties GHvernuft
-    </author>
+      Greald
+	</author>
 
     <!-- Define the main entry-point to the application -->
-    <content src="index.html" />
+    <content src="www/index.html" />
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="DisallowOverscroll"         value="true" />
@@ -155,7 +155,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    
-    <allow-navigation href="https://citytransportservice.nl/*" />
 
 </widget>
