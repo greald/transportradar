@@ -47,16 +47,38 @@
         <div id="deviceready" class="blink">
             <p class="event listening">Device Aansluiten</p>
             <p class="event received">Device is Klaar</p>
-            <p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg">onderweg</a></p>
+            <p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p>
             <p><a href="spec.html">spec</a></p>
-            <p><a href="p2.html">linktest</a></p>
-            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_self');">onderweg</a></p>
+            <!--p><a href="p2.html">linktest</a></p>
+            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
             <form>
-            	Emailadres <input name="user" />
-            	<br/>Wachtwoord <input name="password" type="password" />
-                <br/><input type="button">log in</input><input type="button">log uit</input>
+            	Emailadres <input id="user" name="user" />
+            	<br/>Wachtwoord <input id="password" name="password" type="password" />
+            	<br/><input id="login" type="button" onclick="inloggen();">log in</input><input id="loguit" type="button" onclick="uitloggen();">log uit</input>
             </form>
-
+            <script>
+            	var privee = window.localStorage;
+            	var ingelogd = false;
+				//var value = privee.getItem(key); // Pass a key name to get its value.
+            	if(privee.getItem("user") !== undefined)
+            	{
+            		document.getElementById('user').value = privee.getItem("user");            		
+            	}
+            	if(privee.getItem("password") !== undefined)
+            	{
+            		document.getElementById('password').value = privee.getItem("password");
+            	}
+            	function inloggen()
+            	{
+					window.privee.setItem("user", window.document.getElementById('user').value); 			// Pass a key name and its value to add or update that key.
+					window.privee.setItem("password", window.document.getElementById('password').value); 	// Pass a key name and its value to add or update that key.
+            	}
+            	function uitloggen()
+            	{
+            		window.privee.removeItem("user"); 		// Pass a key name to remove that key from privee.
+            		window.privee.removeItem("password"); 	// Pass a key name to remove that key from privee.
+            	}
+            </script>
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
@@ -65,6 +87,5 @@
         app.initialize();
     </script>
 </body>
-
 
 </html>
