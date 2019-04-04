@@ -48,13 +48,9 @@
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
             <p id="auth"></p>
-            <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
-            <p><a href="spec.html">spec</a></p>
-            <!--p><a href="p2.html">linktest</a></p>
-            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
             <form>
-            	Emailadres <input id="user" name="user" />
-            	<br/>Wachtwoord <input id="password" name="password" type="password" />
+            	<input id="user" name="user" placeholder="emailadres " />
+            	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
             	<br/><input id="login" type="button" onclick="inloggen();" value="log in"></input><input id="loguit" type="button" onclick="uitloggen();" value="log uit"></input>
             </form>
             <script>
@@ -63,16 +59,25 @@
             	
             	function checkAuth()
             	{
+					window.ingelogd = false;
 					//var value = privee.getItem(key); // Pass a key name to get its value.
-	            	if(window.privee.getItem("user") !== undefined)
+	            	if(window.privee.getItem("user") !== undefined 
+	            	&& window.privee.getItem("user") !== null 
+	            	&& window.privee.getItem("user") !== "")
 	            	{
 	            		window.document.getElementById('user').value = window.privee.getItem("user");
 	            		window.ingelogd = true;            		
 	            	}
-	            	if(window.privee.getItem("password") !== undefined)
+	            	if(window.privee.getItem("password") !== undefined 
+	            	&& window.privee.getItem("password") !== null 
+	            	&& window.privee.getItem("password") !== "")
 	            	{
 	            		window.document.getElementById('password').value = window.privee.getItem("password");
 	            		window.ingelogd = window.ingelogd && true;
+	            	}
+	            	else
+	            	{
+	            		window.ingelogd = false;
 	            	}
 	            	
 	            	if(window.ingelogd)
@@ -103,6 +108,10 @@
             		checkAuth();
             	}
             </script>
+            <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
+            <p><a href="spec.html">spec</a></p>
+            <!--p><a href="p2.html">linktest</a></p>
+            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
