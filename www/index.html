@@ -109,6 +109,7 @@
             		checkAuth();
             	}
             </script>
+            <button onclick="clearInterval(speurspoor)">stop</button><button onclick="speurspoor = setInterval(trekspoor, interval);">start</button> localisatie
             <p id="spoor"></p>
             <script>
         	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
@@ -143,8 +144,9 @@
 			    	navigator.geolocation.getCurrentPosition(window.onSuccess, onError);
 			    }
 			    
-			    trekspoor();
-			    
+			    //trekspoor();
+			    var interval = 6000;
+			    var speurspoor = setInterval(trekspoor, interval);
 			    
             </script>
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
