@@ -38,7 +38,7 @@
     <script>window.open = cordova.InAppBrowser.open;</script>
     
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Bezorgradar</title>
+    <title>op weg</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
             <form>
             	<input id="user" name="user" placeholder="emailadres " />
             	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
-            	<br/><input id="login" type="button" onclick="inloggen();" value="log in"></input><input id="loguit" type="button" onclick="uitloggen();" value="log uit"></input>
+            	<br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" />
             </form>
             <script>
             	var privee = window.localStorage;
@@ -90,7 +90,7 @@
 	            	{
 	            		//window.document.getElementById('loguit').disabled = true;
 	            		//window.document.getElementById('login').disabled = false;
-	            		window.document.getElementById('auth').innerHTML="Eerst inloggen";
+	            		window.document.getElementById('auth').innerHTML="Eerst identificeren";
 	            	}
             	}
             	checkAuth();
@@ -101,6 +101,7 @@
 					window.privee.setItem("password", window.document.getElementById('password').value); 	// Pass a key name and its value to add or update that key.
 					checkAuth();
             	}
+
             	function uitloggen()
             	{
             		window.privee.removeItem("user"); 		// Pass a key name to remove that key from privee.
