@@ -47,7 +47,8 @@
         <div id="deviceready" class="blink">
             <p class="event listening">Device Aansluiten</p>
             <p class="event received">Device is Klaar</p>
-            <p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p>
+            <p id="auth"></p>
+            <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">spec</a></p>
             <!--p><a href="p2.html">linktest</a></p>
             <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
@@ -59,24 +60,46 @@
             <script>
             	var privee = window.localStorage;
             	var ingelogd = false;
-				//var value = privee.getItem(key); // Pass a key name to get its value.
-            	if(privee.getItem("user") !== undefined)
+            	
+            	function checkAuth()
             	{
-            		document.getElementById('user').value = privee.getItem("user");            		
+					//var value = privee.getItem(key); // Pass a key name to get its value.
+	            	if(window.privee.getItem("user") !== undefined)
+	            	{
+	            		window.document.getElementById('user').value = window.privee.getItem("user");
+	            		window.ingelogd = true;            		
+	            	}
+	            	if(window.privee.getItem("password") !== undefined)
+	            	{
+	            		window.document.getElementById('password').value = window.privee.getItem("password");
+	            		window.ingelogd = window.ingelogd && true;
+	            	}
+	            	if(window.ingelogd)
+	            	{
+	            		window.document.getElementById('login').disabled = true;
+	            		window.document.getElementById('loguit').disabled = false;
+	            		window.documentgetElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
+	            	}
+	            	else
+	            	{
+	            		window.document.getElementById('loguit').disabled = true;
+	            		window.document.getElementById('login').disabled = false;
+	            		window.documentgetElementById('auth').innerHTML="Eerst inloggen";
+	            	}
             	}
-            	if(privee.getItem("password") !== undefined)
-            	{
-            		document.getElementById('password').value = privee.getItem("password");
-            	}
+            	checkAuth();
+            	
             	function inloggen()
             	{
 					window.privee.setItem("user", window.document.getElementById('user').value); 			// Pass a key name and its value to add or update that key.
 					window.privee.setItem("password", window.document.getElementById('password').value); 	// Pass a key name and its value to add or update that key.
+					checkAuth();
             	}
             	function uitloggen()
             	{
             		window.privee.removeItem("user"); 		// Pass a key name to remove that key from privee.
             		window.privee.removeItem("password"); 	// Pass a key name to remove that key from privee.
+            		checkAuth();
             	}
             </script>
         </div>
