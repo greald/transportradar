@@ -44,9 +44,9 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Device Aansluiten</p>
-            <p class="event received">Device is Klaar</p>
+        <div id="deviceready">
+            <p class="event listening blink">Device Aansluiten</p>
+            <p class="event received blink">Device is Klaar</p>
             <p id="auth"></p>
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">spec</a></p>
@@ -74,19 +74,19 @@
 	            		window.document.getElementById('password').value = window.privee.getItem("password");
 	            		window.ingelogd = window.ingelogd && true;
 	            	}
-	            	/*
+	            	
 	            	if(window.ingelogd)
 	            	{
-	            		window.document.getElementById('login').disabled = true;
-	            		window.document.getElementById('loguit').disabled = false;
+	            		//window.document.getElementById('login').disabled = true;
+	            		//window.document.getElementById('loguit').disabled = false;
 	            		window.document.getElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
 	            	}
 	            	else
 	            	{
-	            		window.document.getElementById('loguit').disabled = true;
-	            		window.document.getElementById('login').disabled = false;
+	            		//window.document.getElementById('loguit').disabled = true;
+	            		//window.document.getElementById('login').disabled = false;
 	            		window.document.getElementById('auth').innerHTML="Eerst inloggen";
-	            	}*/
+	            	}
             	}
             	checkAuth();
             	
