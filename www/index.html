@@ -55,7 +55,7 @@
             <form>
             	Emailadres <input id="user" name="user" />
             	<br/>Wachtwoord <input id="password" name="password" type="password" />
-            	<br/><input id="login" type="button" onclick="inloggen();">log in</input><input id="loguit" type="button" onclick="uitloggen();">log uit</input>
+            	<br/><input id="login" type="button" onclick="inloggen();" value="log in"></input><input id="loguit" type="button" onclick="uitloggen();" value="log uit"></input>
             </form>
             <script>
             	var privee = window.localStorage;
@@ -78,13 +78,13 @@
 	            	{
 	            		window.document.getElementById('login').disabled = true;
 	            		window.document.getElementById('loguit').disabled = false;
-	            		window.documentgetElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
+	            		window.document.getElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
 	            	}
 	            	else
 	            	{
 	            		window.document.getElementById('loguit').disabled = true;
 	            		window.document.getElementById('login').disabled = false;
-	            		window.documentgetElementById('auth').innerHTML="Eerst inloggen";
+	            		window.document.getElementById('auth').innerHTML="Eerst inloggen";
 	            	}
             	}
             	checkAuth();
