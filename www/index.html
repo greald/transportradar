@@ -109,35 +109,46 @@
             		checkAuth();
             	}
             </script>
+            <p id="spoor"></p>
             <script>
-            	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
-            	    // onSuccess Callback
-				    // This method accepts a Position object, which contains the
-				    // current GPS coordinates
-				    //
-				    var onSuccess = function(position) {
-				        alert('Latitude: '          + position.coords.latitude          + '\n' +
-				              'Longitude: '         + position.coords.longitude         + '\n' +
-				              'Altitude: '          + position.coords.altitude          + '\n' +
-				              'Accuracy: '          + position.coords.accuracy          + '\n' +
-				              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-				              'Heading: '           + position.coords.heading           + '\n' +
-				              'Speed: '             + position.coords.speed             + '\n' +
-				              'Timestamp: '         + position.timestamp                + '\n');
-				    };
+        	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
+        	    // onSuccess Callback
+			    // This method accepts a Position object, which contains the
+			    // current GPS coordinates
+			    //
+			    var onSuccess = function(position) 
+			    {
+			        /*
+			        alert('Latitude: '          + position.coords.latitude          + '\n' +
+			              'Longitude: '         + position.coords.longitude         + '\n' +
+			              'Altitude: '          + position.coords.altitude          + '\n' +
+			              'Accuracy: '          + position.coords.accuracy          + '\n' +
+			              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+			              'Heading: '           + position.coords.heading           + '\n' +
+			              'Speed: '             + position.coords.speed             + '\n' +
+			              'Timestamp: '         + position.timestamp                + '\n');*/
+			        window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
+			    };
 
-				    // onError Callback receives a PositionError object
-				    //
-				    function onError(error) {
-				        alert('code: '    + error.code    + '\n' +
-				              'message: ' + error.message + '\n');
-				    }
-
-				    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
+			    // onError Callback receives a PositionError object
+			    //
+			    function onError(error) 
+			    {
+			        alert('code: '    + error.code    + '\n' +
+			              'message: ' + error.message + '\n');
+			    }
+			    
+			    function trekspoor()
+			    {
+			    	navigator.geolocation.getCurrentPosition(window.onSuccess, onError);
+			    }
+			    
+			    trekspoor();
+			    
+			    
             </script>
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
-            <p><a href="spec.html">spec</a></p>
+            <p><a href="spec.html">verheven dichterlijke taal</a></p>
             <!--p><a href="p2.html">linktest</a></p>
             <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
         </div>
