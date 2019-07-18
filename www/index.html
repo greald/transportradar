@@ -44,7 +44,7 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-	    v201907182336
+	    v201907190008
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
@@ -112,8 +112,14 @@
             </script>
             <p>
 	            localisatie
-	            <br/><button onclick="clearInterval(speurspoor)">stop</button><button onclick="speurspoor = setInterval(trekspoor, interval);">start</button> 
-			</p>
+	            <br/>
+		    <!--button onclick="clearInterval(speurspoor)">stop</button>
+		    <button onclick="speurspoor = setInterval(trekspoor, interval);">start</button--> 
+		    <button onclick="speurspoor = setInterval(trekspoor ,interval);">Start</button>
+		    <button onclick="clearInterval(speurspoor)">Stop</button>
+
+
+</p>
             <p id="spoor"></p>
             <script>
         	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
@@ -149,8 +155,9 @@
 			    }
 			    
 			    //trekspoor();
-			    var interval = 6000;
-			    var speurspoor = setInterval(trekspoor, interval);
+			    var interval = 3000;
+		    	    var speurspoor = null;
+
 			    
             </script>
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
