@@ -113,11 +113,9 @@
             <p>
 	            localisatie
 	            <br/>
-		    <button onclick="speurspoor = setInterval(trekspoor ,interval);">Start</button>
-		    <button onclick="clearInterval(speurspoor)">Stop</button>
-
-
-</p>
+			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button>
+			    <button onclick="clearInterval(speurspoor)">Stop</button>
+		    </p>
             <p id="spoor"></p>
             <script>
         	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
@@ -153,11 +151,14 @@
 			    }
 			    
 			    //trekspoor();
-			    var interval = 6*60000;
-		    	    var speurspoor = null;
+			    var interval = 6*60000; // 6 minuten
+	    	    var speurspoor = null;
 
-			    
             </script>
+            <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php', function(data, status){
+				    alert('Data: ' + data + '\nStatus: ' + status);
+				  });">ajax-get</button>
+            
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">verheven dichterlijke taal</a></p>
             <!--p><a href="p2.html">linktest</a></p>
