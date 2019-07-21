@@ -157,10 +157,10 @@
 	    	    var speurspoor = null;
 
             </script>
-            <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php', function(data, status){
+            <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
 				  });">ajax-get</button>
-            <button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php',
+            <button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
   				{
  				   name: "Donald Duck",
  				   city: "Duckburg"
