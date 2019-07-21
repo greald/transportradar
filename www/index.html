@@ -56,7 +56,7 @@
             	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
             	<br/><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
             	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
-            	<br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" />
+            	<!--br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" /-->
             </form>
             <script>
             	var privee = window.localStorage;
@@ -141,7 +141,7 @@
 			        window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
-			        $.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 	  				{
 	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
 	 				   passWord: window.document.forms['meldpunt'].elements['password'].value,
@@ -165,20 +165,20 @@
 			    }
 			    
 			    //trekspoor();
-			    var interval = 6*60000; // 6 minuten
+			    var interval = 6000;//6*60000; // 6 minuten
 	    	    var speurspoor = null;
 
             </script>
-            <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
+            <!--button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">ajax-get</button>
-            <button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+				  });">ajax-get</button-->
+            <!--button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
   				{
  				   name: 'Donald Duck',
  				   city: 'Duckburg'
  				 }, function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">ajax-post</button>
+				  });">ajax-post</button-->
             
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">verheven dichterlijke taal</a></p>
