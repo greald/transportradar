@@ -46,7 +46,7 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-	    v201907190008
+	    v201907212210
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
@@ -160,13 +160,13 @@
             <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php', function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
 				  });">ajax-get</button>
-            <button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php',
+            <button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php',
   				{
  				   name: "Donald Duck",
  				   city: "Duckburg"
  				 }, function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">ajax-get</button>
+				  });">ajax-post</button>
             
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">verheven dichterlijke taal</a></p>
