@@ -46,7 +46,7 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-	    v201907212335
+	    v201907220008
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
@@ -54,8 +54,8 @@
             <form name="meldpunt">
             	<input id="user" name="user" placeholder="emailadres" />
             	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
-            	<br/><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" />
-            	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" />
+            	<br/><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
+            	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
             	<br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" />
             </form>
             <script>
@@ -141,6 +141,14 @@
 			        window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
+			        $.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+	  				{
+	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
+	 				   passWord: window.document.forms['meldpunt'].elements['password'].value,
+	 				   locatieNu: window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7)
+	 				 }, function(data, status){
+					    alert('Data: ' + data + '\nStatus: ' + status);
+					  });
 			    };
 
 			    // onError Callback receives a PositionError object
