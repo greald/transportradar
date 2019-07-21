@@ -46,14 +46,16 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-	    v201907212255
+	    v201907212335
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
             <p id="auth"></p>
-            <form>
-            	<input id="user" name="user" placeholder="emailadres " />
+            <form name="meldpunt">
+            	<input id="user" name="user" placeholder="emailadres" />
             	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
+            	<br/><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" />
+            	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" />
             	<br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" />
             </form>
             <script>
@@ -137,6 +139,8 @@
 			              'Speed: '             + position.coords.speed             + '\n' +
 			              'Timestamp: '         + position.timestamp                + '\n');*/
 			        window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
+			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
+			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
 			    };
 
 			    // onError Callback receives a PositionError object
