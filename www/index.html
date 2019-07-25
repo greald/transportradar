@@ -150,9 +150,7 @@
  				 	   //city: 'Duckburg'
 	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
 	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
-	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
-					     ',' + 
-					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7))
+	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
 	 				 }, function(data, status){
 					    alert('Data: ' + data + '\nStatus: ' + status);
 					  });
@@ -179,13 +177,13 @@
             <!--button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
 				  });">ajax-get</button-->
-            <button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+            <!--button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
   				{
  				   name: 'Donald Duck',
  				   city: 'Duckburg'
  				 }, function(data, status){
 				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">Donald Duck</button>
+				  });">Donald Duck</button-->
             
             <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">verheven dichterlijke taal</a></p>
