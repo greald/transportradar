@@ -118,9 +118,7 @@
 	            localisatie
 	            <br/>
 			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button>
-			    <button onclick="alert('userName: '+window.document.forms['meldpunt'].elements['user'].value+
-				    'passWord: '+window.document.forms['meldpunt'].elements['password'].value+
-				    'locatieNu: '+window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7));">Test</button>
+			    <button onclick="alert('locatieNu: '+window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7));">Test</button>
 			    <button onclick="clearInterval(speurspoor)">Stop</button>
 		    </p>
             <p id="spoor"></p>
