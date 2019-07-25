@@ -118,6 +118,9 @@
 	            localisatie
 	            <br/>
 			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button>
+			    <button onclick="alert('userName: '+window.document.forms['meldpunt'].elements['user'].value+
+				    'passWord: '+window.document.forms['meldpunt'].elements['password'].value+
+				    'locatieNu: '+window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7));">Test</button>
 			    <button onclick="clearInterval(speurspoor)">Stop</button>
 		    </p>
             <p id="spoor"></p>
@@ -143,9 +146,9 @@
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
 			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 	  				{
- 				   	   //name: 'Donald Duck',
+ 				   	   name: 'Donald Duck',
  				 	   city: 'Duckburg'
-	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
+	 				   //userName: window.document.forms['meldpunt'].elements['user'].value,
 	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
 	 				   //locatieNu: window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7)
 	 				 }, function(data, status){
