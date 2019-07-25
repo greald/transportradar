@@ -16,7 +16,206 @@
     specific language governing permissions and limitations
     under the License.
 -->
+<html><!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <script>window.open = cordova.InAppBrowser.open;</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>op weg</title>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Bezorgradar</h1>
+	    v201907252351
+        <div id="deviceready">
+            <p class="event listening blink">Device Aansluiten</p>
+            <p class="event received blink">Device is Klaar</p>
+            <p id="auth"></p>
+            <form name="meldpunt">
+            	<input id="user" name="user" placeholder="emailadres" />
+            	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
+  	        <p>localisatie
+		</p><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
+            	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
+            	<!--br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" /-->
+            </form>
+            <script>
+            	var privee = window.localStorage;
+            	var ingelogd = false;
+            	
+            	function checkAuth()
+            	{
+					window.ingelogd = false;
+					//var value = privee.getItem(key); // Pass a key name to get its value.
+	            	if(window.privee.getItem("user") !== undefined 
+	            	&& window.privee.getItem("user") !== null 
+	            	&& window.privee.getItem("user") !== "")
+	            	{
+	            		window.document.getElementById('user').value = window.privee.getItem("user");
+	            		window.ingelogd = true;            		
+	            	}
+	            	if(window.privee.getItem("password") !== undefined 
+	            	&& window.privee.getItem("password") !== null 
+	            	&& window.privee.getItem("password") !== "")
+	            	{
+	            		window.document.getElementById('password').value = window.privee.getItem("password");
+	            		window.ingelogd = window.ingelogd && true;
+	            	}
+	            	else
+	            	{
+	            		window.ingelogd = false;
+	            	}
+	            	
+	            	if(window.ingelogd)
+	            	{
+	            		//window.document.getElementById('login').disabled = true;
+	            		//window.document.getElementById('loguit').disabled = false;
+	            		window.document.getElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
+	            	}
+	            	else
+	            	{
+	            		//window.document.getElementById('loguit').disabled = true;
+	            		//window.document.getElementById('login').disabled = false;
+	            		window.document.getElementById('auth').innerHTML="Eerst identificeren";
+	            	}
+            	}
+            	checkAuth();
+            	
+            	function inloggen()
+            	{
+					window.privee.setItem("user", window.document.getElementById('user').value); 			// Pass a key name and its value to add or update that key.
+					window.privee.setItem("password", window.document.getElementById('password').value); 	// Pass a key name and its value to add or update that key.
+					checkAuth();
+            	}
+
+            	function uitloggen()
+            	{
+            		window.privee.removeItem("user"); 		// Pass a key name to remove that key from privee.
+            		window.privee.removeItem("password"); 	// Pass a key name to remove that key from privee.
+            		checkAuth();
+            	}
+            </script>
+            <p>
+	            <br/>
+			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button>
+			    <!--button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
+					     ',' + 
+					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button-->
+			    <button onclick="clearInterval(speurspoor)">Stop</button>
+		    </p>
+            <p id="spoor"></p>
+            <script>
+        	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
+        	    // onSuccess Callback
+			    // This method accepts a Position object, which contains the
+			    // current GPS coordinates
+			    //
+			    var onSuccess = function(position) 
+			    {
+			        /*
+			        alert('Latitude: '          + position.coords.latitude          + '\n' +
+			              'Longitude: '         + position.coords.longitude         + '\n' +
+			              'Altitude: '          + position.coords.altitude          + '\n' +
+			              'Accuracy: '          + position.coords.accuracy          + '\n' +
+			              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+			              'Heading: '           + position.coords.heading           + '\n' +
+			              'Speed: '             + position.coords.speed             + '\n' +
+			              'Timestamp: '         + position.timestamp                + '\n');*/
+			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
+			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
+			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
+			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+	  				{
+	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
+	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
+	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
+	 				 }, function(data, status){
+					    window.document.getElementById('spoor').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
+					  });
+			    };
+
+			    // onError Callback receives a PositionError object
+			    //
+			    function onError(error) 
+			    {
+			        alert('code: '    + error.code    + '\n' +
+			              'message: ' + error.message + '\n');
+			    }
+			    
+			    function trekspoor()
+			    {
+			    	navigator.geolocation.getCurrentPosition(window.onSuccess, onError);
+			    }
+			    
+			    //trekspoor();
+			    var interval = 6000;//6*60000; // 6 minuten
+	    	    var speurspoor = null;
+
+            </script>
+            <!--button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
+				    alert('Data: ' + data + '\nStatus: ' + status);
+				  });">ajax-get</button-->
+            <!--button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+  				{
+ 				   name: 'Donald Duck',
+ 				   city: 'Duckburg'
+ 				 }, function(data, status){
+				    alert('Data: ' + data + '\nStatus: ' + status);
+				  });">Donald Duck</button-->
+            
+	    <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
+            <p><a href="spec.html">verheven dichterlijke taal</a></p>
+            <!--p><a href="p2.html">linktest</a></p>
+            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
+
 
 <head>
     <meta charset="utf-8" />
