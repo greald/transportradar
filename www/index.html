@@ -147,10 +147,12 @@
 			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 	  				{
  				   	   name: 'Donald Duck',
- 				 	   city: 'Duckburg'
-	 				   //userName: window.document.forms['meldpunt'].elements['user'].value,
+ 				 	   //city: 'Duckburg'
+	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
 	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
-	 				   //locatieNu: window.document.forms['meldpunt'].elements['breedte'].value.toFixed(7) + ',' + window.document.forms['meldpunt'].elements['lengte'].value.toFixed(7)
+	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
+					     ',' + 
+					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7))
 	 				 }, function(data, status){
 					    alert('Data: ' + data + '\nStatus: ' + status);
 					  });
