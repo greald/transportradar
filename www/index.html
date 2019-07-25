@@ -46,7 +46,7 @@
 <body>
     <div class="app">
         <h1>Bezorgradar</h1>
-	    v201907220008
+	    v201907252351
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
             <p class="event received blink">Device is Klaar</p>
@@ -54,7 +54,8 @@
             <form name="meldpunt">
             	<input id="user" name="user" placeholder="emailadres" />
             	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
-            	<br/><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
+  	        <p>localisatie
+		</p><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
             	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
             	<!--br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" /-->
             </form>
@@ -115,12 +116,11 @@
             	}
             </script>
             <p>
-	            localisatie
 	            <br/>
 			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button>
-			    <button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
+			    <!--button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
 					     ',' + 
-					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button>
+					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button-->
 			    <button onclick="clearInterval(speurspoor)">Stop</button>
 		    </p>
             <p id="spoor"></p>
@@ -152,7 +152,7 @@
 	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
 	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
 	 				 }, function(data, status){
-					    alert('Data: ' + data + '\nStatus: ' + status);
+					    window.document.getElementById('latestdate').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
 					  });
 			    };
 
@@ -185,7 +185,8 @@
 				    alert('Data: ' + data + '\nStatus: ' + status);
 				  });">Donald Duck</button-->
             
-            <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
+            <p id="latestdate"></p>
+	    <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">verheven dichterlijke taal</a></p>
             <!--p><a href="p2.html">linktest</a></p>
             <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
