@@ -52,8 +52,8 @@
             <p class="event received blink">Device is Klaar</p>
             <p id="auth"></p>
             <form name="meldpunt">
-            	<input id="user" name="user" placeholder="emailadres" />
-            	<br/><input id="password" name="password" type="password" placeholder="wachtwoord " />
+            	<input id="userName" name="userName" placeholder="emailadres" />
+            	<br/><input id="passWord" name="passWord" type="password" placeholder="wachtwoord " />
   	        <p>localisatie
 		</p><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
             	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
@@ -67,18 +67,18 @@
             	{
 					window.ingelogd = false;
 					//var value = privee.getItem(key); // Pass a key name to get its value.
-	            	if(window.privee.getItem("user") !== undefined 
-	            	&& window.privee.getItem("user") !== null 
-	            	&& window.privee.getItem("user") !== "")
+	            	if(window.privee.getItem("userName") !== undefined 
+	            	&& window.privee.getItem("userName") !== null 
+	            	&& window.privee.getItem("userName") !== "")
 	            	{
-	            		window.document.getElementById('user').value = window.privee.getItem("user");
+	            		window.document.getElementById('userName').value = window.privee.getItem("userName");
 	            		window.ingelogd = true;            		
 	            	}
-	            	if(window.privee.getItem("password") !== undefined 
-	            	&& window.privee.getItem("password") !== null 
-	            	&& window.privee.getItem("password") !== "")
+	            	if(window.privee.getItem("passWord") !== undefined 
+	            	&& window.privee.getItem("passWord") !== null 
+	            	&& window.privee.getItem("passWord") !== "")
 	            	{
-	            		window.document.getElementById('password').value = window.privee.getItem("password");
+	            		window.document.getElementById('passWord').value = window.privee.getItem("passWord");
 	            		window.ingelogd = window.ingelogd && true;
 	            	}
 	            	else
@@ -90,7 +90,7 @@
 	            	{
 	            		//window.document.getElementById('login').disabled = true;
 	            		//window.document.getElementById('loguit').disabled = false;
-	            		window.document.getElementById('auth').innerHTML="Welkom "+window.privee.getItem("user");
+	            		window.document.getElementById('auth').innerHTML="Welkom "+window.privee.getItem("userName");
 	            	}
 	            	else
 	            	{
@@ -103,15 +103,15 @@
             	
             	function inloggen()
             	{
-					window.privee.setItem("user", window.document.getElementById('user').value); 			// Pass a key name and its value to add or update that key.
-					window.privee.setItem("password", window.document.getElementById('password').value); 	// Pass a key name and its value to add or update that key.
+					window.privee.setItem("userName", window.document.getElementById('userName').value); 			// Pass a key name and its value to add or update that key.
+					window.privee.setItem("passWord", window.document.getElementById('passWord').value); 	// Pass a key name and its value to add or update that key.
 					checkAuth();
             	}
 
             	function uitloggen()
             	{
-            		window.privee.removeItem("user"); 		// Pass a key name to remove that key from privee.
-            		window.privee.removeItem("password"); 	// Pass a key name to remove that key from privee.
+            		window.privee.removeItem("userName"); 		// Pass a key name to remove that key from privee.
+            		window.privee.removeItem("passWord"); 	// Pass a key name to remove that key from privee.
             		checkAuth();
             	}
             </script>
@@ -144,11 +144,10 @@
 			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
-//			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
-				window.$.post('https://citytransportservice.nl/bezorgradar/?start/onderwegapi/' + Math.random(),
+			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 	  				{
-	 				   userName: window.document.forms['meldpunt'].elements['user'].value,
-	 				   //passWord: window.document.forms['meldpunt'].elements['password'].value,
+	 				   userName: window.document.forms['meldpunt'].elements['userName'].value,
+	 				   passWord: window.document.forms['meldpunt'].elements['passWord'].value,
 	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
 	 				 }, function(data, status){
 					    window.document.getElementById('spoor').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
