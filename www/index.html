@@ -144,7 +144,8 @@
 			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
-			        window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+			        //window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+			        window.$.post('https://citytransportservice.nl/bezorgradar/?onderwegapi/' + Math.random(),
 	  				{
 	 				   userName: window.document.forms['meldpunt'].elements['userName'].value,
 	 				   passWord: window.document.forms['meldpunt'].elements['passWord'].value,
