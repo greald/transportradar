@@ -144,7 +144,7 @@
 			              'Speed: '             + position.coords.speed             + '\n' +
 			              'Timestamp: '         + position.timestamp                + '\n');*/
 			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
-			        window.document.forms['meldpunt'].elements['formid'].value = Date.now();
+			        window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
 			        //window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
