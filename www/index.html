@@ -52,16 +52,16 @@
             <p class="event received blink">Device is Klaar</p>
             <p id="auth"></p>
             <form name="meldpunt">
-            	<input id="formid" name="formid" value="" />
             	<input id="userName" name="userName" placeholder="emailadres" />
             	<br/><input id="passWord" name="passWord" type="password" placeholder="wachtwoord " />
   	        <p>localisatie
 		</p><input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
             	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
             	<!--br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" /-->
+            	<input id="formid" name="formid" value="" readonly />
             </form>
             <script>
-		window.document.forms['meldpunt'].elements['formid'].value = Date.now();
+		window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
 		var privee = window.localStorage;
             	var ingelogd = false;
             	
