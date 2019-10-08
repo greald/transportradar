@@ -21,10 +21,15 @@
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="DisallowOverscroll"         value="true" />
-    <preference name="android-minSdkVersion" value="28" />
-
+    
     <!-- Define a specific version of PhoneGap to build into your app. -->
     <!-- <preference name="phonegap-version"       value="cli-6.0.0" /> -->
+    <!-- https://blog.phonegap.com/cli-9-0-0-support-has-been-added-to-phonegap-build-da92fff6d588 -->
+    <preference name="android-minSdkVersion" value="28" />
+    <!-- https://stackoverflow.com/questions/57512846/cordova-plugin-background-mode-plugin-used-to-work-but-now-the-build-crashes-an?answertab=active#tab-top -->
+    <preference name='phonegap-version' value='cli-9.0.0' />
+    <preference name='pgb-builder-version' value='1' />
+    <!--preference name="android-targetSdkVersion" value="28" /-->
 
     <!-- Plugins -->
     <!-- Core plugins -->
