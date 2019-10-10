@@ -119,12 +119,21 @@
             </script>
             <p>
 	            <br/>
-			    <button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval); cordova.plugins.backgroundMode.enable();">Start</button>
+			    <button onclick="trekspoor(); 
+					     speurspoor = setInterval(trekspoor,interval); 
+					     cordova.plugins.backgroundMode.enable();
+					     cordova.plugins.backgroundMode.setEnabled(true);
+					     cordova.plugins.backgroundMode.on('activate', function() 
+					     	{
+   							cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+					     	});">Start</button>
 			    <!--button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button-->
 			    <!--button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
 					     ',' + 
 					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button-->
-			    <button onclick="clearInterval(speurspoor); cordova.plugins.backgroundMode.disable();">Stop</button>
+			    <button onclick="clearInterval(speurspoor); 
+					     cordova.plugins.backgroundMode.disable();
+					     cordova.plugins.backgroundMode.setEnabled(false);">Stop</button>
 			    <!--button onclick="clearInterval(speurspoor);">Stop</button-->
 		    </p>
             <p id="spoor"></p>
