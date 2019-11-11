@@ -57,11 +57,11 @@
 
 <body>
     <div class="app">
-        <h1>Bezorgradar</h1>
+        <h1>Transportradar</h1>
 	    v201911111111
         <div id="deviceready">
             <p class="event listening blink">Device Aansluiten</p>
-            <p class="event received blink">Device is klaar<span id="auth">.</span></p>
+            <p class="event received blink">Apparaat werkt<span id="auth">.</span></p>
             
             <form name="meldpunt">
             	<input id="userName" name="userName" placeholder="emailadres" />
@@ -132,7 +132,7 @@
             	}
             </script>
             <div style="margin: auto; width: 90%; text-align:center">
-		<button id="startknop" style="background-color: #00bc93; width:50%" 
+		<button id="startknop" style="background-color: #abcdef; width:50%" 
 		    onclick="inloggen();
 			trekspoor(); 
 			speurspoor = setInterval(trekspoor,interval); 
@@ -144,7 +144,7 @@
 			});
 			document.getElementById('startknop').disabled = 'disabled';
 		">Start</button>
-		<button id="stopknop" style="background-color: #003c2f; width:30%"
+		<button id="stopknop" style="background-color: #1570ea; width:30%"
 		    onclick="clearInterval(speurspoor); 
 			cordova.plugins.backgroundMode.disable();
 			cordova.plugins.backgroundMode.setEnabled(false);
@@ -215,10 +215,7 @@
 				    alert('Data: ' + data + '\nStatus: ' + status);
 				  });">Donald Duck</button-->
             
-	    <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
             <p><a href="spec.html">***</a></p>
-            <!--p><a href="p2.html">linktest</a></p>
-            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
