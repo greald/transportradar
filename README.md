@@ -1,19 +1,19 @@
-# Bezorgradar PhoneGap App 
+# Transportradar PhoneGap App 
 after https://github.com/phonegap/phonegap-template-hello-world#hello-world-phonegap-template-
 
 ## Usage
 
 #### Target users
 
-Target users are independent package delivery workers having been registered at 
+Target users are independent transporters having been registered at 
 
     https://citytransportservice.nl/bezorgradar/?start/onderweg
 
-Register and download bezorgradar-app from
+Register and download transportradar-app from
 
     https://build.phonegap.com/apps/3507341/install
 
-Make sure the bezorgradar-app is granted access to location.
+Make sure the transportradar-app is granted access to location.
 
 So far only for Android and Windows (not tested) devices
 
