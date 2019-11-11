@@ -66,21 +66,239 @@
             	var ingelogd = false;
             	
             	function checkAuth()
+            	{<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <script>window.open = cordova.InAppBrowser.open;</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>op weg</title>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Bezorgradar</h1>
+	    v201911111111
+        <div id="deviceready">
+            <p class="event listening blink">Device Aansluiten</p>
+            <p class="event received blink">Device is klaar<span id="auth">.</span></p>
+            
+            <form name="meldpunt">
+            	<input id="userName" name="userName" placeholder="emailadres" />
+            	<br/><input id="passWord" name="passWord" type="password" placeholder="wachtwoord " />
+	  	        <p>localisatie</p>
+				<input id="breedte" name="breedte" type="text" placeholder="breedtegraad" value="52.0000000" />
+	        	<br/><input id="lengte" name="lengte" type="text" placeholder="lengtegraad" value="6.0000000" />
+	        	<!--br/><input id="login" type="button" onclick="inloggen();" value="log in" /><input id="loguit" type="button" onclick="uitloggen();" value="log uit" /-->
+	        	<input id="formid" name="formid" value="" readonly />
+            </form>
+            <script>
+				window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
+				var privee = window.localStorage;
+            	var ingelogd = false;
+            	
+            	function checkAuth()
             	{
-			window.ingelogd = false;
-			//var value = privee.getItem(key); // Pass a key name to get its value.
-	            	if(window.privee.getItem("userName") !== undefined 
-	            	&& window.privee.getItem("userName") !== null 
-	            	&& window.privee.getItem("userName") !== "")
+					window.ingelogd = false;
+					//var value = privee.getItem(key); // Pass a key name to get its value.
+	            	if(window.localStorage.getItem("userName") !== undefined 
+	            	&& window.localStorage.getItem("userName") !== null 
+	            	&& window.localStorage.getItem("userName") !== "")
 	            	{
-	            		window.document.getElementById('userName').value = window.privee.getItem("userName");
+	            		window.document.getElementById('userName').value = window.localStorage.getItem("userName");
 	            		window.ingelogd = true;            		
 	            	}
-	            	if(window.privee.getItem("passWord") !== undefined 
-	            	&& window.privee.getItem("passWord") !== null 
-	            	&& window.privee.getItem("passWord") !== "")
+	            	if(window.localStorage.getItem("passWord") !== undefined 
+	            	&& window.localStorage.getItem("passWord") !== null 
+	            	&& window.localStorage.getItem("passWord") !== "")
 	            	{
-	            		window.document.getElementById('passWord').value = window.privee.getItem("passWord");
+	            		window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
+	            		window.ingelogd = window.ingelogd && true;
+	            	}
+	            	else
+	            	{
+	            		window.ingelogd = false;
+	            	}
+	            	
+	            	if(window.ingelogd)
+	            	{
+	            		//window.document.getElementById('login').disabled = true;
+	            		//window.document.getElementById('loguit').disabled = false;
+	            		window.document.getElementById('auth').innerHTML=" voor "+window.localStorage.getItem("userName");
+	            	}
+	            	else
+	            	{
+	            		//window.document.getElementById('loguit').disabled = true;
+	            		//window.document.getElementById('login').disabled = false;
+	            		window.document.getElementById('auth').innerHTML=". Nu eerst identificeren.";
+	            	}
+	            	window.document.getElementById('userName').value = window.localStorage.getItem("userName");
+	            	window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
+            	}
+            	checkAuth();
+            	
+            	function inloggen()
+            	{
+					window.localStorage.setItem("userName", window.document.getElementById('userName').value); 	// Pass (key name, value) to add or update that key.
+					window.localStorage.setItem("passWord", window.document.getElementById('passWord').value); 	// Pass a key name and its value to add or update that key.
+					checkAuth();
+            	}
+            	
+            	function uitloggen()
+            	{
+            		window.localStorage.removeItem("userName"); 	// Pass a key name to remove that key from localStorage.
+            		window.localStorage.removeItem("passWord"); 	// Pass a key name to remove that key from localStorage.
+            		checkAuth();
+            	}
+            </script>
+            <p>
+	            <br/>
+			    <button onclick="inloggen();
+					    trekspoor(); 
+					     speurspoor = setInterval(trekspoor,interval); 
+					     cordova.plugins.backgroundMode.enable();
+					     cordova.plugins.backgroundMode.setEnabled(true);
+					     cordova.plugins.backgroundMode.on('activate', function() 
+					     	{
+   							cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+					     	});">Start</button>
+			    <!--button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button-->
+			    <!--button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
+					     ',' + 
+					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button-->
+			    <button onclick="clearInterval(speurspoor); 
+					     cordova.plugins.backgroundMode.disable();
+					     cordova.plugins.backgroundMode.setEnabled(false);">Stop</button>
+			    <!--button onclick="clearInterval(speurspoor);">Stop</button-->
+		    </p>
+            <p id="spoor"></p>
+            <script>
+        	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
+        	    // onSuccess Callback
+			    // This method accepts a Position object, which contains the
+			    // current GPS coordinates
+			    //
+			    var onSuccess = function(position) 
+			    {
+			        /*
+			        alert('Latitude: '          + position.coords.latitude          + '\n' +
+			              'Longitude: '         + position.coords.longitude         + '\n' +
+			              'Altitude: '          + position.coords.altitude          + '\n' +
+			              'Accuracy: '          + position.coords.accuracy          + '\n' +
+			              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+			              'Heading: '           + position.coords.heading           + '\n' +
+			              'Speed: '             + position.coords.speed             + '\n' +
+			              'Timestamp: '         + position.timestamp                + '\n');*/
+			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
+			        window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
+			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
+			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
+			        //window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+			        window.$.post('https://citytransportservice.nl/bezorgradar/?start/onderwegapi/' + Math.random(),
+
+	 				   formid: window.document.forms['meldpunt'].elements['formid'].value,
+	 				   userName: window.document.forms['meldpunt'].elements['userName'].value,
+	 				   passWord: window.document.forms['meldpunt'].elements['passWord'].value,
+	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
+	 				 }, function(data, status){
+					    window.document.getElementById('spoor').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
+					  });
+			    };
+
+			    // onError Callback receives a PositionError object
+			    //
+			    function onError(error) 
+			    {
+			        alert('code: '    + error.code    + '\n' +
+			              'message: ' + error.message + '\n');
+			    }
+			    
+			    function trekspoor()
+			    {
+			    	navigator.geolocation.getCurrentPosition(window.onSuccess, onError);
+			    }
+			    
+			    //trekspoor();
+			    var interval = 360000; // 6 minuten //6000; // 6 seconden //
+	    	    var speurspoor = null;
+
+            </script>
+            <!--button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
+				    alert('Data: ' + data + '\nStatus: ' + status);
+				  });">ajax-get</button-->
+            <!--button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
+  				{
+ 				   name: 'Donald Duck',
+ 				   city: 'Duckburg'
+ 				 }, function(data, status){
+				    alert('Data: ' + data + '\nStatus: ' + status);
+				  });">Donald Duck</button-->
+            
+	    <!--p><a href="https://citytransportservice.nl/bezorgradar/?start/onderweg" target="_self">onderweg</a></p-->
+            <p><a href="spec.html">verheven dichterlijke taal</a></p>
+            <!--p><a href="p2.html">linktest</a></p>
+            <p><a href="window.open('https://citytransportservice.nl/bezorgradar/?start/onderweg', '_system');">onderweg</a></p-->
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
+
+			window.ingelogd = false;
+			//var value = privee.getItem(key); // Pass a key name to get its value.
+	            	if(window.localStorage.getItem("userName") !== undefined 
+	            	&& window.localStorage.getItem("userName") !== null 
+	            	&& window.localStorage.getItem("userName") !== "")
+	            	{
+	            		window.document.getElementById('userName').value = window.localStorage.getItem("userName");
+	            		window.ingelogd = true;            		
+	            	}
+	            	if(window.localStorage.getItem("passWord") !== undefined 
+	            	&& window.localStorage.getItem("passWord") !== null 
+	            	&& window.localStorage.getItem("passWord") !== "")
+	            	{
+	            		window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
 	            		window.ingelogd = window.ingelogd && true;
 	            	}
 	            	else
