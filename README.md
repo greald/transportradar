@@ -5,7 +5,7 @@ after https://github.com/phonegap/phonegap-template-hello-world#hello-world-phon
 
 #### Target users
 
-Target users are independent package delivery workers registered at 
+Target users are independent package delivery workers having been registered at 
 
     https://citytransportservice.nl/bezorgradar/?start/onderweg
 
