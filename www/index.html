@@ -40,6 +40,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+	
+    <style> 
+	button {  
+  		border: none;
+  		color: white;
+  		padding: 1em 2em;
+  		text-decoration: none;
+  		font-size: 1.5em;
+  		margin: 1em .5em;
+  		cursor: pointer;
+	}
+    </style>
+	
     <title>op weg</title>
 </head>
 
@@ -119,22 +132,25 @@
             		checkAuth();
             	}
             </script>
-            <p>
-	            <br/>
-			    <button onclick="inloggen();
-					    trekspoor(); 
-					     speurspoor = setInterval(trekspoor,interval); 
-					     cordova.plugins.backgroundMode.enable();
-					     cordova.plugins.backgroundMode.setEnabled(true);
-					     cordova.plugins.backgroundMode.on('activate', function() 
-					     	{
-   							cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
-					     	});">Start</button>
-			    <button onclick="clearInterval(speurspoor); 
-					     cordova.plugins.backgroundMode.disable();
-					     cordova.plugins.backgroundMode.setEnabled(false);
-					     window.document.getElementById('spoor').innerHTML = 'spoor uitzetten onderbroken';">Stop</button>
-		    </p>
+            <div style="margin: auto; width: 90%; text-align:center">
+		<button id="startknop" onclick="inloggen();
+			trekspoor(); 
+			speurspoor = setInterval(trekspoor,interval); 
+			cordova.plugins.backgroundMode.enable();
+			cordova.plugins.backgroundMode.setEnabled(true);
+			cordova.plugins.backgroundMode.on('activate', function() 
+			{
+   				cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+			});
+			document.getElementById('startknop').disabled = 'disabled';
+		">Start</button>
+		<button id="stopknop" onclick="clearInterval(speurspoor); 
+			cordova.plugins.backgroundMode.disable();
+			cordova.plugins.backgroundMode.setEnabled(false);
+			window.document.getElementById('spoor').innerHTML = 'spoor uitzetten onderbroken';
+			document.getElementById('startknop').disabled = false;
+		">Stop</button>
+	    </div>
             <p id="spoor"></p>
             <script>
         	    // https://cordova.apache.org/docs/en/9.x/reference/cordova-plugin-geolocation/index.html#example
