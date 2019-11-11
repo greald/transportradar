@@ -133,7 +133,8 @@
             	}
             </script>
             <div style="margin: auto; width: 90%; text-align:center">
-		<button id="startknop" onclick="inloggen();
+		<button id="startknop" style="background-color: #00bc93; width:50%" 
+		    onclick="inloggen();
 			trekspoor(); 
 			speurspoor = setInterval(trekspoor,interval); 
 			cordova.plugins.backgroundMode.enable();
@@ -144,7 +145,8 @@
 			});
 			document.getElementById('startknop').disabled = 'disabled';
 		">Start</button>
-		<button id="stopknop" onclick="clearInterval(speurspoor); 
+		<button id="stopknop" style="background-color: #003c2f; width:30%"
+		    onclick="clearInterval(speurspoor); 
 			cordova.plugins.backgroundMode.disable();
 			cordova.plugins.backgroundMode.setEnabled(false);
 			window.document.getElementById('spoor').innerHTML = 'spoor uitzetten onderbroken';
