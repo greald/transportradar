@@ -6,10 +6,10 @@
         id        = "nl.citytransportservice.bezorgradar"
         version   = "1.0.0">
 
-    <name>Bezorgradar</name>
+    <name>Transportradar</name>
 
     <description>
-      Coming for you. Sample application that responds to the deviceready event.
+      Transporter coming for you
     </description>
 
     <author href="https://ghvernuft.nl" email="greaties@ghvernuft.nl">
