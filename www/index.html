@@ -61,26 +61,26 @@
 	        	<input id="formid" name="formid" value="" readonly />
             </form>
             <script>
-		window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
-		var privee = window.localStorage;
+				window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
+				var privee = window.localStorage;
             	var ingelogd = false;
             	
             	function checkAuth()
             	{
-			window.ingelogd = false;
-			//var value = privee.getItem(key); // Pass a key name to get its value.
-	            	if(window.localStorage.getItem("userName") !== undefined 
-	            	&& window.localStorage.getItem("userName") !== null 
-	            	&& window.localStorage.getItem("userName") !== "")
+					window.ingelogd = false;
+					//var value = privee.getItem(key); // Pass a key name to get its value.
+	            	if(window.privee.getItem("userName") !== undefined 
+	            	&& window.privee.getItem("userName") !== null 
+	            	&& window.privee.getItem("userName") !== "")
 	            	{
-	            		window.document.getElementById('userName').value = window.localStorage.getItem("userName");
+	            		window.document.getElementById('userName').value = window.privee.getItem("userName");
 	            		window.ingelogd = true;            		
 	            	}
-	            	if(window.localStorage.getItem("passWord") !== undefined 
-	            	&& window.localStorage.getItem("passWord") !== null 
-	            	&& window.localStorage.getItem("passWord") !== "")
+	            	if(window.privee.getItem("passWord") !== undefined 
+	            	&& window.privee.getItem("passWord") !== null 
+	            	&& window.privee.getItem("passWord") !== "")
 	            	{
-	            		window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
+	            		window.document.getElementById('passWord').value = window.privee.getItem("passWord");
 	            		window.ingelogd = window.ingelogd && true;
 	            	}
 	            	else
@@ -92,7 +92,7 @@
 	            	{
 	            		//window.document.getElementById('login').disabled = true;
 	            		//window.document.getElementById('loguit').disabled = false;
-	            		window.document.getElementById('auth').innerHTML=" voor "+window.localStorage.getItem("userName");
+	            		window.document.getElementById('auth').innerHTML=" voor "+window.privee.getItem("userName");
 	            	}
 	            	else
 	            	{
@@ -100,28 +100,29 @@
 	            		//window.document.getElementById('login').disabled = false;
 	            		window.document.getElementById('auth').innerHTML=". Nu eerst identificeren.";
 	            	}
-//	            	window.document.getElementById('userName').value = window.localStorage.getItem("userName");
-//	            	window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
+	            	window.document.getElementById('userName').value = window.privee.getItem("userName");
+	            	window.document.getElementById('passWord').value = window.privee.getItem("passWord");
             	}
             	checkAuth();
             	
             	function inloggen()
             	{
-			window.localStorage.setItem("userName", window.document.getElementById('userName').value); 	// Pass (key name, value) to add or update that key.
-			window.localStorage.setItem("passWord", window.document.getElementById('passWord').value); 	// Pass a key name and its value to add or update that key.
-			checkAuth();
+					window.privee.setItem("userName", window.document.getElementById('userName').value); 	// Pass (key name, value) to add or update that key.
+					window.privee.setItem("passWord", window.document.getElementById('passWord').value); 	// Pass a key name and its value to add or update that key.
+					checkAuth();
             	}
             	
             	function uitloggen()
             	{
-            		window.localStorage.removeItem("userName"); 	// Pass a key name to remove that key from localStorage.
-            		window.localStorage.removeItem("passWord"); 	// Pass a key name to remove that key from localStorage.
+            		window.privee.removeItem("userName"); 	// Pass a key name to remove that key from localStorage.
+            		window.privee.removeItem("passWord"); 	// Pass a key name to remove that key from localStorage.
             		checkAuth();
             	}
             </script>
             <p>
 	            <br/>
-			    <button onclick="/*inloggen();*/ trekspoor(); 
+			    <button onclick="inloggen();
+					    trekspoor(); 
 					     speurspoor = setInterval(trekspoor,interval); 
 					     cordova.plugins.backgroundMode.enable();
 					     cordova.plugins.backgroundMode.setEnabled(true);
@@ -129,14 +130,10 @@
 					     	{
    							cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
 					     	});">Start</button>
-			    <!--button onclick="trekspoor(); speurspoor = setInterval(trekspoor,interval);">Start</button-->
-			    <!--button onclick="alert('locatieNu: '+Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ 
-					     ',' + 
-					     Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7));">Test</button-->
 			    <button onclick="clearInterval(speurspoor); 
 					     cordova.plugins.backgroundMode.disable();
-					     cordova.plugins.backgroundMode.setEnabled(false);">Stop</button>
-			    <!--button onclick="clearInterval(speurspoor);">Stop</button-->
+					     cordova.plugins.backgroundMode.setEnabled(false);
+					     window.document.getElementById('spoor').innerHTML = 'spoor uitzetten onderbroken';">Stop</button>
 		    </p>
             <p id="spoor"></p>
             <script>
@@ -162,7 +159,7 @@
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
 			        //window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 			        window.$.post('https://citytransportservice.nl/bezorgradar/?start/onderwegapi/' + Math.random(),
-					 {
+	  				{
 	 				   formid: window.document.forms['meldpunt'].elements['formid'].value,
 	 				   userName: window.document.forms['meldpunt'].elements['userName'].value,
 	 				   passWord: window.document.forms['meldpunt'].elements['passWord'].value,
