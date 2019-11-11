@@ -1,5 +1,5 @@
 # Bezorgradar PhoneGap App 
-after Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+after https://github.com/phonegap/phonegap-template-hello-world#hello-world-phonegap-template-
 
 ## Usage
 
