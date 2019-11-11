@@ -100,8 +100,8 @@
 	            		//window.document.getElementById('login').disabled = false;
 	            		window.document.getElementById('auth').innerHTML=". Nu eerst identificeren.";
 	            	}
-	            	window.document.getElementById('userName').value = window.localStorage.getItem("userName");
-	            	window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
+//	            	window.document.getElementById('userName').value = window.localStorage.getItem("userName");
+//	            	window.document.getElementById('passWord').value = window.localStorage.getItem("passWord");
             	}
             	checkAuth();
             	
@@ -121,8 +121,7 @@
             </script>
             <p>
 	            <br/>
-			    <button onclick="inloggen();
-					    trekspoor(); 
+			    <button onclick="/*inloggen();*/ trekspoor(); 
 					     speurspoor = setInterval(trekspoor,interval); 
 					     cordova.plugins.backgroundMode.enable();
 					     cordova.plugins.backgroundMode.setEnabled(true);
