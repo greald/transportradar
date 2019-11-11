@@ -26,7 +26,9 @@ Registered users may open the app and identify themselves with username and pass
 ##### Leave trail
 
 After having hit the
+
     start - button
+
 the registered user's location is sent to the server every six minutes. 
 The trace between the latest five locations may be publicly displayed at
 
@@ -40,7 +42,9 @@ which the registered user may share at will.
 
 ##### Stop tracing
 After having hit the
+
     stop-button
-the registered user's location is no longer sent, until the star-button is hit again or the app is restarted. 
+
+the registered user's location is no longer sent, until the start-button is hit again or the app is restarted. 
 
 
