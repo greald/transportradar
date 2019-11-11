@@ -1,62 +1,46 @@
-# Bezorgradar PhoneGap Template 
+# Bezorgradar PhoneGap App 
 after Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
-
-A PhoneGap Hello World template
 
 ## Usage
 
-#### PhoneGap CLI
+#### Target users
 
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
+Target users are independent package delivery workers registered at 
 
-    phonegap create my-app
+    https://citytransportservice.nl/bezorgradar/?start/onderweg
 
-Create an app using this template specifically:
+Register and download bezorgradar-app from
 
-    phonegap create my-app --template hello-world
+    https://build.phonegap.com/apps/3507341/install
 
-To see a list of other available PhoneGap templates:
+Make sure the bezorgradar-app is granted access to location.
 
-    phonegap template list
+So far only for Android and Windows (not tested) devices
 
-## [config.xml][config-xml]
+#### Instructions
 
-#### &lt;access ...&gt; (All)
+##### Identify
 
-This template defaults to wide open access.
+Registered users may open the app and identify themselves with username and password.
 
-    <access origin="*" />
+##### Leave trail
 
-It is strongly encouraged that you restrict access to external resources in your application before releasing to production.
+After having hit the
+    start - button
+the registered user's location is sent to the server every six minutes. 
+The trace between the latest five locations may be publicly displayed at
 
-For more information on whitelist configuration, see the [Cordova Whitelist Guide][cordova-whitelist-guide] and the [Cordova Whitelist Plugin documentation][cordova-plugin-whitelist]
+    https://citytransportservice.nl/bezorgradar/?address/positie
 
-## [www/index.html][index-html]
+The personal trace between the latest five locations may be privately displayed at
 
-#### Content Security Policy (CSP)
+    https://citytransportservice.nl/bezorgradar/?address/positie/u/[personal usercode]
 
-The default CSP is similarly open:
+which the registered user may share at will.
 
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-
-Much like the access tag above, you are strongly encouraged to use a more restrictive CSP in production.
-
-A good starting point declaration might be:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />
-
-For more information on the Content Security Policy, see the [section on CSP in the Cordova Whitelist Plugin documentation][cordova-plugin-whitelist-csp].
-
-Another good resource for generating a good CSP declaration is [CSP is Awesome][csp-is-awesome]
+##### Stop tracing
+After having hit the
+    stop-button
+the registered user's location is no longer sent, until the star-button is hit again or the app is restarted. 
 
 
-[phonegap-cli-url]: http://github.com/phonegap/phonegap-cli
-[cordova-app]: http://github.com/apache/cordova-app-hello-world
-[bithound-img]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world/badges/score.svg
-[bithound-url]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world
-[config-xml]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/config.xml
-[index-html]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/www/index.html
-[cordova-whitelist-guide]: https://cordova.apache.org/docs/en/dev/guide/appdev/whitelist/index.html
-[cordova-plugin-whitelist]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist
-[cordova-plugin-whitelist-csp]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist#content-security-policy
-[csp-is-awesome]: http://cspisawesome.com
