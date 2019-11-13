@@ -58,10 +58,10 @@
 <body>
     <div class="app">
         <h1>Transportradar</h1>
-	    v201911111111
+	    <!--v201911111111-->
         <div id="deviceready">
-            <p class="event listening blink">Device Aansluiten</p>
-            <p class="event received blink">Apparaat werkt<span id="auth">.</span></p>
+            <p class="event listening blink">Device defect</p>
+            <p class="event received blink"><span id="auth">Eerst identificeren.</span></p>
             
             <form name="meldpunt">
             	<input id="userName" name="userName" placeholder="emailadres" />
@@ -74,6 +74,7 @@
             </form>
             <script>
 				window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
+				// source for localStorage: https://cordova.apache.org/docs/en/9.x/cordova/storage/storage.html#localstorage
 				var privee = window.localStorage;
             	var ingelogd = false;
             	
@@ -102,15 +103,12 @@
 	            	
 	            	if(window.ingelogd)
 	            	{
-	            		//window.document.getElementById('login').disabled = true;
-	            		//window.document.getElementById('loguit').disabled = false;
-	            		window.document.getElementById('auth').innerHTML=" voor "+window.privee.getItem("userName");
+	            		//window.document.getElementById('auth').innerHTML=" voor "+window.privee.getItem("userName");
+	            		window.document.getElementById('auth').innerHTML = "identificatie";
 	            	}
 	            	else
 	            	{
-	            		//window.document.getElementById('loguit').disabled = true;
-	            		//window.document.getElementById('login').disabled = false;
-	            		window.document.getElementById('auth').innerHTML=". Nu eerst identificeren.";
+	            		window.document.getElementById('auth').innerHTML="Eerst identificeren.";
 	            	}
 	            	window.document.getElementById('userName').value = window.privee.getItem("userName");
 	            	window.document.getElementById('passWord').value = window.privee.getItem("passWord");
@@ -158,36 +156,28 @@
         	    // onSuccess Callback
 			    // This method accepts a Position object, which contains the
 			    // current GPS coordinates
-			    //
 			    var onSuccess = function(position) 
 			    {
-			        /*
-			        alert('Latitude: '          + position.coords.latitude          + '\n' +
-			              'Longitude: '         + position.coords.longitude         + '\n' +
-			              'Altitude: '          + position.coords.altitude          + '\n' +
-			              'Accuracy: '          + position.coords.accuracy          + '\n' +
-			              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-			              'Heading: '           + position.coords.heading           + '\n' +
-			              'Speed: '             + position.coords.speed             + '\n' +
-			              'Timestamp: '         + position.timestamp                + '\n');*/
-			        //window.document.getElementById("spoor").innerHTML += position.coords.latitude + ' nb ' + position.coords.longitude + ' ol<br/>\n';
 			        window.document.forms['meldpunt'].elements['formid'].value = Number(Date.now()/1000).toFixed(0);
 			        window.document.forms['meldpunt'].elements['breedte'].value = position.coords.latitude;
 			        window.document.forms['meldpunt'].elements['lengte'].value = position.coords.longitude;
+			        // source for $.post(): https://www.w3schools.com/jquery/ajax_post.asp
 			        //window.$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
 			        window.$.post('https://citytransportservice.nl/bezorgradar/?start/onderwegapi/' + Math.random(),
 	  				{
 	 				   formid: window.document.forms['meldpunt'].elements['formid'].value,
 	 				   userName: window.document.forms['meldpunt'].elements['userName'].value,
 	 				   passWord: window.document.forms['meldpunt'].elements['passWord'].value,
-	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
-	 				 }, function(data, status){
-					    window.document.getElementById('spoor').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
-					  });
+	 				   locatieNu: Number(window.document.forms['meldpunt'].elements['breedte'].value).toFixed(7)+ ',' 
+		 				        + Number(window.document.forms['meldpunt'].elements['lengte'].value).toFixed(7)
+					}, 
+					function(data, status)
+					{
+					window.document.getElementById('spoor').innerHTML = 'Data: ' + data + '\nStatus: ' + status;
+					});
 			    };
 
 			    // onError Callback receives a PositionError object
-			    //
 			    function onError(error) 
 			    {
 			        alert('code: '    + error.code    + '\n' +
@@ -199,22 +189,10 @@
 			    	navigator.geolocation.getCurrentPosition(window.onSuccess, onError);
 			    }
 			    
-			    //trekspoor();
 			    var interval = 360000; // 6 minuten //6000; // 6 seconden //
 	    	    var speurspoor = null;
 
             </script>
-            <!--button onclick="$.get('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(), function(data, status){
-				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">ajax-get</button-->
-            <!--button onclick="$.post('https://citytransportservice.nl/bezorgradar/hybrid/base.php?' + Math.random(),
-  				{
- 				   name: 'Donald Duck',
- 				   city: 'Duckburg'
- 				 }, function(data, status){
-				    alert('Data: ' + data + '\nStatus: ' + status);
-				  });">Donald Duck</button-->
-            
             <p><a href="spec.html">***</a></p>
         </div>
     </div>
